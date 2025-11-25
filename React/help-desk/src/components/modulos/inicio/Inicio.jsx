@@ -19,25 +19,25 @@ export default function Inicio() {
     const fetchData = async () => {
       try {
 
-        const [
-          usuarios,
-          tecnicos,
-          enProceso,
-          cerrados,
-          cancelados,
-          evaluaciones,
-          tecnicosStats,
-          usuariosStats
-        ] = await Promise.all([
-          axios.get("http://localhost:3001/web/usuarios"),
-          axios.get("http://localhost:3001/web/tecnicos"),
-          axios.get("http://localhost:3001/web/ticketsEnProceso"),
-          axios.get("http://localhost:3001/web/ticketsCerrado"),
-          axios.get("http://localhost:3001/web/ticketsCancelado"),
-          axios.get("http://localhost:3001/web/ticketsConEvaluacion"),
-          axios.get("http://localhost:3001/web/statsTecnicos"),
-          axios.get("http://localhost:3001/web/statsUsuarios")
-        ]);
+       const [
+  usuarios,
+  tecnicos,
+  enProceso,
+  cerrados,
+  cancelados,
+  evaluaciones,
+  tecnicosStats,
+  usuariosStats
+] = await Promise.all([
+  axios.get(`${process.env.REACT_APP_API_URL}/web/usuarios`),
+  axios.get(`${process.env.REACT_APP_API_URL}/web/tecnicos`),
+  axios.get(`${process.env.REACT_APP_API_URL}/web/ticketsEnProceso`),
+  axios.get(`${process.env.REACT_APP_API_URL}/web/ticketsCerrado`),
+  axios.get(`${process.env.REACT_APP_API_URL}/web/ticketsCancelado`),
+  axios.get(`${process.env.REACT_APP_API_URL}/web/ticketsConEvaluacion`),
+  axios.get(`${process.env.REACT_APP_API_URL}/web/statsTecnicos`),
+  axios.get(`${process.env.REACT_APP_API_URL}/web/statsUsuarios`)
+]);
 
         const promedio = calcularPromedio(evaluaciones.data);
 
